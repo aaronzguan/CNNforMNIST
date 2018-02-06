@@ -2,9 +2,11 @@
 A CNN for MNIST Dataset
 
 ##Structure
-![image] https://github.com/aaronzguan/CNNforMNIST/blob/master/stucture.png
+
+![image]https://github.com/aaronzguan/CNNforMNIST/blob/master/stucture.png
 
 ##How to read
+
 [mainProcess.py](/mainProcess.py) handles the main iteration and processing
 
 [functionDef.py](/functionDef.py) simplifies the function: 2-d convolution, maxmum pooling, bias and weight
