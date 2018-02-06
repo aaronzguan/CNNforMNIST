@@ -1,11 +1,11 @@
 # CNNforMNIST
 A CNN for MNIST Dataset
 
-##Structure
+## Structure
 
-![image]https://github.com/aaronzguan/CNNforMNIST/blob/master/stucture.png
+![image](https://github.com/aaronzguan/CNNforMNIST/blob/master/stucture.png)
 
-##How to read
+## How to read
 
 [mainProcess.py](/mainProcess.py) handles the main iteration and processing
 
