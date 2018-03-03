@@ -1,5 +1,5 @@
 # CNNforMNIST
-A CNN for MNIST Dataset
+A CNN for MNIST Dataset, the details could be found at http://www.aaronguan.com/CNNforMNIST.html
 
 ## Structure
 
