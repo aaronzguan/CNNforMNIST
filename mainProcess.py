@@ -16,15 +16,22 @@ flags = tf.app.flags
 FLAGS = flags.FLAGS
 flags.DEFINE_string('data_dir', '/tmp/data/', 'Directory for storing data')
 print("Data Directory:" + FLAGS.data_dir)
-mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True)
+mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True) # MNIST is returned by read_data_sets
+# The images are returned as a 2-D NumPy array of size [batch_size, 784] (since there are 784 pixels in an MNIST image),
+# and the labels are returned as 2-D NumPy array of size [batch_size, 10]
+# (if read_data_sets() was called with one_hot=True).
+# Otherwise, the labels are returned as a 1-D NumPy array of size [batch_size]
 
 session = tf.InteractiveSession()
 session.run(tf.global_variables_initializer())
-for i in range(100):
-    batch = mnist.train.next_batch(50)
+for i in range(3000):
+    batch = mnist.train.next_batch(50) # Pick 50 datasets for everytime train
+    # mnist.train.next_batch(batch_size)
+    # Returns a tuple of 2 arrays, where the first represents a batch of batch_size MNIST images,
+    # and the second represents a batch of batch-size labels corresponding to those images.
     if i % 100 == 0:
         # eval means run
-        # Using feed_dict to replace the placeholder tensors x, y_, and keep_prob with the training examples.
+        # Using feed_dict to replace the placeholder tensors x, y_, and keep_prob.
         train_accuracy = accuracy.eval(feed_dict={x: batch[0], y_: batch[1], keep_prob: 1.0})
         print("The accuracy of the %d training cycle: %g" % (i, train_accuracy))
 

@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 # Define a weight function
-# A tensor of the specified shape filled with 0.1 truncated normal values
+# A tensor of the specified shape filled with 0.1 truncated normal values (like Gaussian Filter)
 def weight_variable(shape):
     initial = tf.truncated_normal(shape, stddev=0.1)
     return tf.Variable(initial)
