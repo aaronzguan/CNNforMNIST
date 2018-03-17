@@ -3,7 +3,7 @@ A CNN for MNIST Dataset, the details could be found at http://www.aaronguan.com/
 
 ## Structure
 
-<img src="https://github.com/aaronzguan/CNNforMNIST/blob/master/stucture.png" style="width: 200px;"/>
+<img src="https://github.com/aaronzguan/CNNforMNIST/blob/master/stucture.png" style="width: 50px;"/>
 
 ![image](https://github.com/aaronzguan/CNNforMNIST/blob/master/stucture_graph.png)
 
