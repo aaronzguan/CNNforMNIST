@@ -5,6 +5,8 @@ A CNN for MNIST Dataset, the details could be found at http://www.aaronguan.com/
 
 ![image](https://github.com/aaronzguan/CNNforMNIST/blob/master/stucture.png)
 
+![image](https://github.com/aaronzguan/CNNforMNIST/blob/master/stucture_graph.png)
+
 ## How to read
 
 [mainProcess.py](/mainProcess.py): main processing for training and testing.
