@@ -3,9 +3,9 @@ A CNN for MNIST Dataset, the details could be found at http://www.aaronguan.com/
 
 ## Structure
 
-![image](https://github.com/aaronzguan/CNNforMNIST/blob/master/stucture.png)
+![image](https://github.com/aaronzguan/CNNforMNIST/blob/master/stucture.png =50x10)
 
-![image](https://github.com/aaronzguan/CNNforMNIST/blob/master/stucture_graph.png)
+![image](https://github.com/aaronzguan/CNNforMNIST/blob/master/stucture_graph.png =50x10)
 
 ## How to read
 
