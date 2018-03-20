@@ -1,0 +1,19 @@
+2018-03-17 19:21:25
+Data Directory:/tmp/data/
+Structure: 1 input layer, 2 convolution layers, 1 fully-connected layer, and 1 softmax output layer
+Input Layer: 1 channel, 28*28 pixels images
+The 1st convolution layer:  32 of 5*5 kernels, activation function: elu, pooling: mx_pool_2x2
+The 2nd convolution layer:  64 of 5*5 kernels, activation function: elu, pooling: mx_pool_2x2
+The fully-connected layer: activation function: elu, dropout: 0.5
+The softmax output layer: Softmax Function
+The error function: The cross-entropy cost function
+The training algorithm: adam algorithm with learning rate 0.0001
+Accuracy of the 0 training cycle: 0.16
+Accuracy of the 100 training cycle: 0.9
+Accuracy of the 200 training cycle: 0.88
+Accuracy of the 300 training cycle: 0.96
+Accuracy of the 400 training cycle: 0.92
+Accuracy of the 500 training cycle: 0.96
+Accuracy of the 600 training cycle: 0.96
+Accuracy of the 700 training cycle: 0.92
+Accuracy of testing: 0.9565
