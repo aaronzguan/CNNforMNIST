@@ -20,3 +20,11 @@ A CNN for MNIST Dataset, the details could be found at http://www.aaronguan.com/
 ## Tensorboard visualization
 
 [main.py](/main.py) embedded the tesorboard visulization function.
+
+[log](/log) contains the output log of the program
+
+[summary](/summary) contains the tensorboad visulization file
+
+### How to visulaization?
+
+  tensorboard --logdir= "path/to/log-directory"
