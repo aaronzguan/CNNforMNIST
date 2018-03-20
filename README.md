@@ -16,3 +16,7 @@ A CNN for MNIST Dataset, the details could be found at http://www.aaronguan.com/
 [CNNLayers.py](/CNNLayers.py): defines the struture of the CNN: 1 input layer, 2 convolution layers and 2 fully-connected layers.
 
 [lossFunction.py](/lossFunction.py): defines the loss function and the accuracy of the CNN.
+
+## Tensorboard visualization
+
+[main.py](/main.py) embedded the tesorboard visulization function.
