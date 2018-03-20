@@ -27,4 +27,4 @@ A CNN for MNIST Dataset, the details could be found at http://www.aaronguan.com/
 
 ### How to visulaization?
 
-  tensorboard --logdir= "path/to/log-directory"
+    tensorboard --logdir= "path/to/log-directory"
