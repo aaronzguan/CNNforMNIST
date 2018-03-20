@@ -25,6 +25,6 @@ A CNN for MNIST Dataset, the details could be found at http://www.aaronguan.com/
 
 [summary](/summary) contains the tensorboad visulization file
 
-### How to visulaization?
+### How to visualize?
 
     tensorboard --logdir= "path/to/log-directory"
