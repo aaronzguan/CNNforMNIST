@@ -8,6 +8,7 @@ from tensorflow.contrib.tensorboard.plugins import projector
 import tensorflow as tf
 import os
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 # Define a weight function
@@ -69,17 +70,35 @@ def conv_layer(kernel_width, kernel_height, input_num, kernel_num, input_tensor,
         return h_pool
 
 
-class Config:
-    epoch_num = 800  # 整个数据集循环次数
-    kernel = [5, 5]  # Kernel Size 5*5
-    fc_num = 1024  # 定义隐藏层神经元数量
-    class_num = 10  # 定义类别数量
-    learn_rate = 0.0001  # 定义学习率
-    print_interval = 100  # 每隔多少轮训练输出一次结果
-    batch_size = 50  # Define batch size
+def create_sprite_image(images):
+    # Returns a sprite image consisting of images passed as argument. Images should be count x width x height
+    if isinstance(images, list):
+        images = np.array(images)
+    img_h = images.shape[1]
+    img_w = images.shape[2]
+    n_plots = int(np.ceil(np.sqrt(images.shape[0])))
 
-    log_path = "/Users/apple/Documents/PyCharmProjects/CNNforMNIST2.0/log/log-" + datetime.date.today().__str__() + ".txt"
-    summary_path = "/Users/apple/Documents/PyCharmProjects/CNNforMNIST2.0/summary/"
+    spriteimage = np.ones((img_h * n_plots, img_w * n_plots))
+
+    for i in range(n_plots):
+        for j in range(n_plots):
+            this_filter = i * n_plots + j
+            if this_filter < images.shape[0]:
+                this_img = images[this_filter]
+                spriteimage[i * img_h:(i + 1) * img_h,
+                j * img_w:(j + 1) * img_w] = this_img
+
+    return spriteimage
+
+
+def vector_to_matrix_mnist(mnist_digits):
+    # Reshapes normal mnist digit (batch,28*28) to matrix (batch,28,28)
+    return np.reshape(mnist_digits, (-1, 28, 28))
+
+
+def invert_grayscale(mnist_digits):
+    return 1 - mnist_digits
+
 
 
 def run():
@@ -188,7 +207,7 @@ def run():
     writer = tf.summary.FileWriter(config.summary_path, session.graph)
 
     for i in range(config.epoch_num):
-        batch_x, batch_y = mnist.train.next_batch(config.batch_size)
+        batch_x, batch_y = mnist.train.next_batch(config.batch_size)  # batch_x is the image, batch_y is the label
         train_step.run(feed_dict={x: batch_x, y_: batch_y, keep_prob: 0.5})
         if i % config.print_interval == 0:
             # eval means run
@@ -204,14 +223,18 @@ def run():
     log.write("Accuracy of testing: %g" % accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}) + "\n")
     log.flush()
 
+
     # Embedding Projector Visualization
     meta_file = "metadata.tsv"
-    embedding_var = tf.Variable(batch_x, name="trainimages") # Create the embedding
+    embedding_var = tf.Variable(batch_x, name="trainimages")  # Create the embedding
     summary_writer = tf.summary.FileWriter(config.summary_path)
     projector_config = projector.ProjectorConfig()
     embed = projector_config.embeddings.add()
     embed.tensor_name = embedding_var.name
     embed.metadata_path = meta_file
+    embed.sprite.image_path = config.mnistdigits_path
+    # Specify the width and height of a single thumbnail.
+    embed.sprite.single_image_dim.extend([28, 28])
     projector.visualize_embeddings(summary_writer, projector_config)
 
     # Create and initiate the session to store
@@ -219,6 +242,17 @@ def run():
     sess.run(tf.global_variables_initializer())
     saver = tf.train.Saver()
     saver.save(sess, os.path.join(config.summary_path, 'metadata.ckpt'))
+
+    # Create the mnistdigits.png
+    to_visualise = batch_x
+    to_visualise = vector_to_matrix_mnist(to_visualise)
+    to_visualise = invert_grayscale(to_visualise)
+
+    sprite_image = create_sprite_image(to_visualise)
+
+    plt.imsave(config.mnistdigits_path, sprite_image, cmap='gray')
+    plt.imshow(sprite_image, cmap='gray')
+
 
     # Create the metadata.tsv
     with open(config.summary_path+meta_file, 'w') as f:
@@ -231,6 +265,20 @@ def run():
         f.close()
 
     writer.close()
+
+
+class Config:
+    epoch_num = 1500  # 整个数据集循环次数
+    kernel = [5, 5]  # Kernel Size 5*5
+    fc_num = 1024  # 定义隐藏层神经元数量
+    class_num = 10  # 定义类别数量
+    learn_rate = 0.0001  # 定义学习率
+    print_interval = 100  # 每隔多少轮训练输出一次结果
+    batch_size = 100  # Define batch size
+
+    log_path = "/Users/apple/Documents/PyCharmProjects/CNNforMNIST2.0/log/log-" + datetime.date.today().__str__() + ".txt"
+    summary_path = "/Users/apple/Documents/PyCharmProjects/CNNforMNIST2.0/summary/"
+    mnistdigits_path = "/Users/apple/Documents/PyCharmProjects/CNNforMNIST2.0/summary/mnistdigits.png"
 
 run()
 
