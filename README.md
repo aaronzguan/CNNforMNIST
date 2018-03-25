@@ -28,3 +28,16 @@ A CNN for MNIST Dataset, the details could be found at http://www.aaronguan.com/
 ### How to visualize?
 
     tensorboard --logdir= "path/to/log-directory"
+    
+<img src="https://github.com/aaronzguan/CNNforMNIST/blob/master/embedding_projector.png" width="500"/>
+
+
+## Results
+
+Accuracy:
+
+<img src="https://github.com/aaronzguan/CNNforMNIST/blob/master/accuracy.png" width="500"/>
+
+Loss:
+
+<img src="https://github.com/aaronzguan/CNNforMNIST/blob/master/loss.png" width="500"/>
